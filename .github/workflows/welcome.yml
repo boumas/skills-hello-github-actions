@@ -5,17 +5,18 @@ on:
 permissions:
   pull-requests: write
 jobs:
-  run:
-   runs-on: ubuntu-latest
+  welcome:
+    name: post welcome comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: exemple 
+        run: |
+          gh pr comment "$PR_URL" ---body "welcome to my repository"
+          echo "hello"
+        env :
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
 
-   steps:
-    - name: exemple 
-      run: |
-        gh pr comment "$PR_URL" ---body "welcome to my repository"
-        echo "hello"
-      env :
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_URL: ${{ github.event.pull_request.html_url }}
       
 
 
